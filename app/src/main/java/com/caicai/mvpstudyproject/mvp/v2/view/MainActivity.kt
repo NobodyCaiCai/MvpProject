@@ -9,9 +9,13 @@ import android.widget.Toast
 import com.caicai.mvpstudyproject.R
 import com.caicai.mvpstudyproject.mvp.v2.MainContract
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.BaseActivity
+import com.caicai.mvpstudyproject.mvp.v2.injectInterface.InjectPresenter
 import com.caicai.mvpstudyproject.mvp.v2.presenter.MainPresenter
 
 class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPresenter>(),MainContract.IMainView {
+
+    @InjectPresenter
+    private var mPresenter: MainPresenter? = null
     private var mTextView: TextView? = null
 
     override fun initLayout(savedInstanceState: Bundle?) {
@@ -24,10 +28,6 @@ class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPres
 
     override fun initData() {
         mPresenter?.handleData()
-    }
-
-    override fun setPresenter(): MainContract.IMainPresenter {
-        return MainPresenter()
     }
 
     override fun showDialog() {
