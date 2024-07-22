@@ -9,22 +9,16 @@ import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
 
-class MainPresenter : BasePresenter<MainContract.IMainView>(), MainContract.IMainPresenter {
-
-    private var mModel: MainContract.IMainModel? = null
-
-    init {
-        mModel = DataModel()
-    }
+class MainPresenter : BasePresenter<MainContract.IMainView, DataModel>(), MainContract.IMainPresenter {
 
     override fun attach(view: MainContract.IMainView) {
         super.attach(view)
-        mModel = DataModel()
+        Log.i("==========", "attach: 绑定view，初始化model");
     }
 
     override fun handleData() {
         val view = getView()
-        mModel?.requestNetWork(object: Callback{
+        getModel()?.requestNetWork(object: Callback{
             override fun onFailure(call: Call, e: IOException) {
 
             }
@@ -41,7 +35,6 @@ class MainPresenter : BasePresenter<MainContract.IMainView>(), MainContract.IMai
 
     override fun detach() {
         super.detach()
-        mModel = null
-        Log.i("==========", "detech: 解除绑定，释放内存");
+        Log.i("==========", "detach: 解除绑定，释放内存");
     }
 }
