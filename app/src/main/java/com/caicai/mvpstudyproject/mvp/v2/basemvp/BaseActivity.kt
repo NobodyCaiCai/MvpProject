@@ -13,15 +13,15 @@ import androidx.appcompat.app.AppCompatActivity
 abstract class BaseActivity<V : IBaseActivity, P : IBasePresenter<V>> : IBaseActivity,
     AppCompatActivity() {
 
-    var mPresenter: P? = null
+    protected var mPresenter: P? = null
 
     protected abstract fun initLayout(savedInstanceState: Bundle?)
+
+    protected abstract fun setPresenter(): P
 
     protected abstract fun initViews()
 
     protected abstract fun initData()
-
-    protected abstract fun setPresenter(): P
 
     protected fun <T : View> getView(@IdRes viewId: Int): T {
         return findViewById(viewId)

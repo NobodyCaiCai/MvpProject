@@ -23,7 +23,7 @@ class MainPresenter : BasePresenter<MainContract.IMainView>(), MainContract.IMai
     }
 
     override fun handleData() {
-        mView?.showDialog()
+        val view = getView()
         mModel?.requestNetWork(object: Callback{
             override fun onFailure(call: Call, e: IOException) {
 
@@ -33,7 +33,7 @@ class MainPresenter : BasePresenter<MainContract.IMainView>(), MainContract.IMai
              */
             override fun onResponse(call: Call, response: Response) {
                 response.body?.string()?.let {
-                    mView?.success(it.substring(0, 1000))
+                    view.success(it.substring(0, 1000))
                 }
             }
         })

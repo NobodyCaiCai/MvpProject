@@ -4,7 +4,11 @@ import com.caicai.mvpstudyproject.mvp.v2.basemvp.IBaseActivity
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.IBasePresenter
 import okhttp3.Callback
 
-// 业务逻辑接口，实现指定的业务逻辑，比如请求网络，处理数据等
+/*
+    业务逻辑接口，实现指定的业务逻辑，比如请求网络，处理数据等
+    泛型允许在接口中定义通用的操作，而具体的类型由实现类来指定。这种方式提高了代码的灵活性和重用性
+ */
+
 interface MainContract {
     // model层接口
     interface IMainModel {
