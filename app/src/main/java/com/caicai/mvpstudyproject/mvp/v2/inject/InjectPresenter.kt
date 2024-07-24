@@ -1,4 +1,4 @@
-package com.caicai.mvpstudyproject.mvp.v2.injectInterface
+package com.caicai.mvpstudyproject.mvp.v2.inject
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FIELD)

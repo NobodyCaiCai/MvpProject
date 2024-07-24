@@ -1,7 +1,7 @@
 package com.caicai.mvpstudyproject.mvp.v2.presenter
 
 import android.util.Log
-import com.caicai.mvpstudyproject.mvp.v2.MainContract
+import com.caicai.mvpstudyproject.mvp.v2.contract.MainContract
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.BasePresenter
 import com.caicai.mvpstudyproject.mvp.v2.model.DataModel
 import okhttp3.Call

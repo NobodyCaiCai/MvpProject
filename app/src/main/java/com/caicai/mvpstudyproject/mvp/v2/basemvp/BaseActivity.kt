@@ -5,15 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import com.caicai.mvpstudyproject.mvp.v2.injectInterface.InjectPresenter
+import com.caicai.mvpstudyproject.mvp.v2.inject.InjectPresenter
+import com.caicai.mvpstudyproject.mvp.v2.proxy.ProxyActivity
 
 
 /**
  * <P : IBasePresenter> 是一个泛型参数，表示 BaseActivity 类接受一个类型参数 P，且 P 必须是 IBasePresenter 的子类型。
  */
 
-abstract class BaseActivity<V : IBaseActivity, P : IBasePresenter<V>> : IBaseActivity,
-    AppCompatActivity() {
+abstract class BaseActivity<V : IBaseActivity, P : IBasePresenter<V>> : IBaseActivity, AppCompatActivity() {
+
+    private var mProxyActivity: ProxyActivity<IBaseActivity>? = null
 
     private var mInjectPresenterList: MutableList<BasePresenter<IBaseActivity, BaseModel>>? = mutableListOf()
 
@@ -30,9 +32,18 @@ abstract class BaseActivity<V : IBaseActivity, P : IBasePresenter<V>> : IBaseAct
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout(savedInstanceState)
-        initPresenter()
+//        initPresenter()
+        mProxyActivity = createProxyActivity()
+        mProxyActivity?.bindPresenter()
         initViews()
         initData()
+    }
+
+    private fun createProxyActivity(): ProxyActivity<IBaseActivity>? {
+        if (mProxyActivity == null) {
+            return ProxyActivity(this)
+        }
+        return mProxyActivity
     }
 
     /**
@@ -67,13 +78,15 @@ abstract class BaseActivity<V : IBaseActivity, P : IBasePresenter<V>> : IBaseAct
 
     override fun onDestroy() {
         super.onDestroy()
-        mInjectPresenterList?.forEach { presenter ->
-            presenter.detach()
-        }
-        mInjectPresenterList?.clear()
+//        mInjectPresenterList?.forEach { presenter ->
+//            presenter.detach()
+//        }
+//        mInjectPresenterList?.clear()
+//        mInjectPresenterList = null
+        mProxyActivity?.unbindPresenter()
     }
 
-    override fun getContext(): Context {
+    override fun getContext(): Context? {
         return this
     }
 }

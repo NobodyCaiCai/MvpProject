@@ -1,18 +1,20 @@
 package com.caicai.mvpstudyproject.mvp.v2.view
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
 import android.widget.Toast
 import com.caicai.mvpstudyproject.R
-import com.caicai.mvpstudyproject.mvp.v2.MainContract
+import com.caicai.mvpstudyproject.mvp.v2.contract.MainContract
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.BaseActivity
-import com.caicai.mvpstudyproject.mvp.v2.injectInterface.InjectPresenter
+import com.caicai.mvpstudyproject.mvp.v2.inject.InjectPresenter
 import com.caicai.mvpstudyproject.mvp.v2.presenter.MainPresenter
 
-class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPresenter>(),MainContract.IMainView {
+class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPresenter>(),
+    MainContract.IMainView {
 
     @InjectPresenter
     private var mPresenter: MainPresenter? = null
@@ -24,10 +26,14 @@ class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPres
 
     override fun initViews() {
         mTextView = getView(R.id.text_v1)
+        mTextView?.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun initData() {
-        mPresenter?.handleData()
+//        mPresenter?.handleData()
     }
 
     override fun showDialog() {

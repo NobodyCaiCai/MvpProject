@@ -1,6 +1,6 @@
 package com.caicai.mvpstudyproject.mvp.v2.model
 
-import com.caicai.mvpstudyproject.mvp.v2.MainContract
+import com.caicai.mvpstudyproject.mvp.v2.contract.MainContract
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.BaseModel
 import okhttp3.Callback
 import okhttp3.OkHttpClient

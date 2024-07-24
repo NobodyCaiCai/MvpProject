@@ -1,4 +1,4 @@
-package com.caicai.mvpstudyproject.mvp.v2
+package com.caicai.mvpstudyproject.mvp.v2.contract
 
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.IBaseActivity
 import com.caicai.mvpstudyproject.mvp.v2.basemvp.IBasePresenter
