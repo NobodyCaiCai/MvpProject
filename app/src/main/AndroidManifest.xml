@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MvpStudyProject"
         tools:targetApi="31">
         <activity
-            android:name=".mvp.v2.view.MainActivity"
+            android:name=".mvp.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".mvp.v2.view.SecondActivity"
-            android:exported="true"/>
+        <activity android:name=".mvp.v1.login.LoginActivity" android:exported="true"/>
+        <activity android:name=".mvp.v1.main.MainV1Activity" android:exported="true"/>
+        <activity android:name=".mvp.v2.view.FirstActivity" android:exported="true"/>
+        <activity android:name=".mvp.v2.view.SecondActivity" android:exported="true"/>
     </application>
 
 </manifest>

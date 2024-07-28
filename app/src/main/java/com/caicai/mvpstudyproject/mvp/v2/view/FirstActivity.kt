@@ -13,7 +13,7 @@ import com.caicai.mvpstudyproject.mvp.v2.basemvp.BaseActivity
 import com.caicai.mvpstudyproject.mvp.v2.inject.InjectPresenter
 import com.caicai.mvpstudyproject.mvp.v2.presenter.MainPresenter
 
-class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPresenter>(),
+class FirstActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPresenter>(),
     MainContract.IMainView {
 
     @InjectPresenter
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPres
     private var mTextView: TextView? = null
 
     override fun initLayout(savedInstanceState: Bundle?) {
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_first)
     }
 
     override fun initViews() {
