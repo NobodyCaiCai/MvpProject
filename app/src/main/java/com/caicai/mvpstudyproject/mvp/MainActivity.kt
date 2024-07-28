@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.caicai.mvpstudyproject.R
 import com.caicai.mvpstudyproject.mvp.v1.login.LoginActivity
 import com.caicai.mvpstudyproject.mvp.v2.view.FirstActivity
+import com.caicai.mvpstudyproject.mvp.v3.a_demo.TheMVPActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -25,14 +26,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.button1 -> {
-                // https://github.com/antoniolg/androidmvp
+                // https://github.com/antoniolg/androidmvp： 最基本的MVP架构
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
 
             R.id.button2 -> {
-                //  https://blog.csdn.net/smile_Running/article/details/94724540
+                //  https://blog.csdn.net/smile_Running/article/details/94724540：MVP升级版
                 val intent = Intent(this, FirstActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.button3 -> {
+                //  The MVP ：https://github.com/kymjs/TheMVP 一种新的思路
+                val intent = Intent(this, TheMVPActivity::class.java)
                 startActivity(intent)
             }
         }

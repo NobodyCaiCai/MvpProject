@@ -24,8 +24,12 @@
 
         <activity android:name=".mvp.v1.login.LoginActivity" android:exported="true"/>
         <activity android:name=".mvp.v1.main.MainV1Activity" android:exported="true"/>
+
         <activity android:name=".mvp.v2.view.FirstActivity" android:exported="true"/>
         <activity android:name=".mvp.v2.view.SecondActivity" android:exported="true"/>
+
+        <activity android:name=".mvp.v3.a_demo.TheMVPActivity" android:exported="true"/>
+        <activity android:name=".mvp.v3.a_demo.demo1.SimpleActivity" android:exported="true"/>
     </application>
 
 </manifest>
