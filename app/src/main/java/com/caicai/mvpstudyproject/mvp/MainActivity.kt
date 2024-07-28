@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.button1 -> {
-                // https://github.com/antoniolg/androidmvp
+                // https://github.com/antoniolg/androidmvp： 最基本的MVP架构
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
 
             R.id.button2 -> {
-                //  https://blog.csdn.net/smile_Running/article/details/94724540
+                //  https://blog.csdn.net/smile_Running/article/details/94724540：MVP升级版
                 val intent = Intent(this, FirstActivity::class.java)
                 startActivity(intent)
             }

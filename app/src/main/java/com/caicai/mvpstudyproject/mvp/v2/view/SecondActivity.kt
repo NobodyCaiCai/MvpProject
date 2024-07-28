@@ -9,9 +9,7 @@ import com.caicai.mvpstudyproject.R
 class SecondActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("==========", "SecondActivity1")
         setContentView(R.layout.activity_second)
-        Log.i("==========", "SecondActivity2")
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, SecondFragment()).commit()
     }
 }
