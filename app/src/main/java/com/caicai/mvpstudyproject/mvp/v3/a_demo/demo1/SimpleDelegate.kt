@@ -11,12 +11,11 @@ class SimpleDelegate: AppDelegate() {
 
     override fun initWidget() {
         super.initWidget()
-        val view = get<TextView>(R.id.text_simple_v1)
-        view.text = "在视图代理层创建布局"
+        setText("在视图代理层创建布局")
     }
 
     fun setText(msg: String) {
         val view = get<TextView>(R.id.text_simple_v1)
-        view.text = "在视图代理层创建布局"
+        view.text = msg
     }
 }

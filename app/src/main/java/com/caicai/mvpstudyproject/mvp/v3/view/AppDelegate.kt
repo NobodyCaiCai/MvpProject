@@ -16,6 +16,7 @@ abstract class AppDelegate : IDelegate {
 
     private var rootView: View? = null
 
+    //  设置根布局id
     @IdRes
     abstract fun getRootLayoutId(): Int
 
@@ -61,10 +62,10 @@ abstract class AppDelegate : IDelegate {
 
     // bindView的第二种写法，这种写法可能会throw异常（ as T）
     @Suppress("UNCHECKED_CAST")
-    private fun <T: View> bindView2(@IdRes id: Int): T {
+    private fun <T: View> bindView2(@IdRes id: Int): T? {
         return mViews[id] as? T ?: (rootView?.findViewById(id) as? T).also {
             mViews[id] = it
-        } as T
+        }
     }
 
     fun <T: View> get(@IdRes id: Int) : T {

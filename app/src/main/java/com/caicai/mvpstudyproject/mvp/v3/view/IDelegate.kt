@@ -8,9 +8,10 @@ import androidx.appcompat.widget.Toolbar
 
 /**
  * View delegate base class
- * 视图层代理的接口协议
+ * View 视图层代理的接口协议
  */
 interface IDelegate {
+    // 初始化根布局
     fun onCreate(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
 
     fun getRootView(): View?
@@ -19,5 +20,6 @@ interface IDelegate {
 
     fun getToolbar(): Toolbar?
 
+    // 初始化具体视图（view）
     fun initWidget()
 }
