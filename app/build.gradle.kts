@@ -49,6 +49,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation(libs.androidx.recyclerview)
 
+    implementation("de.greenrobot:eventbus:2.4.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

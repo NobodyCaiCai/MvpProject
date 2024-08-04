@@ -9,10 +9,10 @@ import com.caicai.mvpstudyproject.mvp.v3.view.IDelegate
  * Presenter base class for Activity
  * Presenter层的实现基类
  * TheMVP中，presenter层是通过Activity Fragment实现的
+ * 泛型解决 直接引用具体对象的问题
  */
 
-
-abstract class ActivityPresenter<T: IDelegate>() : AppCompatActivity() {
+abstract class ActivityPresenter<T: IDelegate> : AppCompatActivity() {
 
     protected var viewDelegate: T? = null
 
@@ -22,7 +22,7 @@ abstract class ActivityPresenter<T: IDelegate>() : AppCompatActivity() {
 
     private fun initViewDelegate(): T? {
         try {
-            return getDelegateClass()?.getDeclaredConstructor()?.newInstance()
+            return getDelegateClass().getDeclaredConstructor().newInstance()
         } catch (e: InstantiationException) {
             throw RuntimeException("create IDelegate error", e)
         } catch (e: IllegalAccessException) {
@@ -41,6 +41,8 @@ abstract class ActivityPresenter<T: IDelegate>() : AppCompatActivity() {
 
     private fun initToolBar() {
         val toolbar = viewDelegate?.getToolbar()
+        toolbar?.title = "爱宁w"
+        toolbar?.subtitle = "峰哥"
         toolbar?.let {
             setSupportActionBar(it)
         }
@@ -74,5 +76,5 @@ abstract class ActivityPresenter<T: IDelegate>() : AppCompatActivity() {
 
     protected open fun bindEvenListener() {}
 
-    protected abstract fun getDelegateClass(): Class<T>?
+    protected abstract fun getDelegateClass(): Class<T>
 }
