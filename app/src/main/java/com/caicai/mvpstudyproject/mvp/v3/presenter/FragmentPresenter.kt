@@ -73,16 +73,14 @@ abstract class FragmentPresenter<T: IDelegate>: Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (viewDelegate == null) {
-            initViewDelegate()
+            viewDelegate = initViewDelegate()
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
         viewDelegate = null
     }
-
 
     // 可以被重写
     protected open fun bindEventListener() {}

@@ -1,6 +1,7 @@
 package com.caicai.mvpstudyproject.mvp.v3.presenter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.caicai.mvpstudyproject.mvp.v3.view.IDelegate
@@ -17,6 +18,7 @@ abstract class ActivityPresenter<T: IDelegate> : AppCompatActivity() {
     protected var viewDelegate: T? = null
 
     init {
+        Log.i(TAG, "init")
         viewDelegate = initViewDelegate()
     }
 
@@ -31,6 +33,7 @@ abstract class ActivityPresenter<T: IDelegate> : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i(TAG, "onCreate")
         super.onCreate(savedInstanceState)
         viewDelegate?.onCreate(layoutInflater, null, savedInstanceState)
         setContentView(viewDelegate?.getRootView())
@@ -41,9 +44,9 @@ abstract class ActivityPresenter<T: IDelegate> : AppCompatActivity() {
 
     private fun initToolBar() {
         val toolbar = viewDelegate?.getToolbar()
-        toolbar?.title = "爱宁w"
-        toolbar?.subtitle = "峰哥"
         toolbar?.let {
+            it.title = "爱宁w"
+            it.subtitle = "峰哥"
             setSupportActionBar(it)
         }
     }
@@ -52,12 +55,13 @@ abstract class ActivityPresenter<T: IDelegate> : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         try {
-            viewDelegate = getDelegateClass()?.getDeclaredConstructor()?.newInstance()
+            viewDelegate = getDelegateClass().getDeclaredConstructor().newInstance()
         } catch (e: Throwable) {
             throw RuntimeException("create viewDelegate error： ${e.message}")
         }
     }
 
+    // setSupportActionBar后调用
     // onCreateOptionsMenu：只会在第一次初始化菜单时调用一次，之后不会再调用
     // onPrepareOptionsMenu ：在onCreateOptionsMenu执行后，菜单被显示前调用；如果菜单已经被创建，则在菜单显示前被调用，会被调用多次
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -77,4 +81,8 @@ abstract class ActivityPresenter<T: IDelegate> : AppCompatActivity() {
     protected open fun bindEvenListener() {}
 
     protected abstract fun getDelegateClass(): Class<T>
+
+    companion object{
+        private const val TAG = "ActivityPresenter"
+    }
 }

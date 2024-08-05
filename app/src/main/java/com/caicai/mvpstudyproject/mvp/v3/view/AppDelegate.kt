@@ -16,10 +16,6 @@ abstract class AppDelegate : IDelegate {
 
     private var rootView: View? = null
 
-    //  设置根布局id
-    @IdRes
-    abstract fun getRootLayoutId(): Int
-
     override fun onCreate(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ) {
@@ -87,4 +83,8 @@ abstract class AppDelegate : IDelegate {
     fun <T: Activity> getActivity(): T? {
         return rootView?.context as? T
     }
+
+    //  设置根布局id
+    @IdRes
+    abstract fun getRootLayoutId(): Int
 }

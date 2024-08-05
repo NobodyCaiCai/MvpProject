@@ -18,7 +18,6 @@ class DemoActivityV2 : DataBindActivity<SimpleDelegate, DemoBean>() {
         }
     }
 
-
     override fun getDataBinder(): DataBinder<SimpleDelegate, DemoBean> {
         return Demo2DataBinder()
     }
