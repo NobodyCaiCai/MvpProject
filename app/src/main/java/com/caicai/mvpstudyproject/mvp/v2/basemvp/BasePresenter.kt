@@ -1,5 +1,7 @@
 package com.caicai.mvpstudyproject.mvp.v2.basemvp
 
+import android.util.Log
+import java.lang.ref.SoftReference
 import java.lang.ref.WeakReference
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Proxy
@@ -20,14 +22,14 @@ abstract class BasePresenter<V : IBaseActivity, M : BaseModel> : IBasePresenter<
           *  每次mProxyView调用方法的时候，都会调用invoke方法
           *  首先会判断当前的view是否为空，如果为空，则mProxyView调用方法整体返回null
           *  否则，调用被代理对象的方法;
-          *  这里，mPro xyView不会被赋予null，mProxyView是一个代理对象，代理对象的invoke方法会判断当前的view是否为空
+          *  这里，mProxyView不会被赋予null，mProxyView是一个代理对象，代理对象的invoke方法会判断当前的view是否为空
           */
         mProxyView = Proxy.newProxyInstance(classLoader, interfaces) { _, method, args ->
             val currentView = mWeakReference.get()
             if (currentView != null) {
                 method.invoke(currentView, *(args ?: emptyArray()))
             } else {
-                null
+                null // 如果view为空，不调用方法，调用方调用方法直接放返回null
             }
         } as V
 
@@ -41,14 +43,14 @@ abstract class BasePresenter<V : IBaseActivity, M : BaseModel> : IBasePresenter<
          */
         val type = this.javaClass.genericSuperclass
         if (type != null) {
-            val arguments = (type as ParameterizedType).actualTypeArguments
-            val clazz = arguments[1] as Class<M>
+            val arguments = (type as? ParameterizedType)?.actualTypeArguments
+            val clazz = arguments?.get(1) as? Class<M>
             try {
-                mModel = clazz.getDeclaredConstructor().newInstance()
+                mModel = clazz?.getDeclaredConstructor()?.newInstance()
             } catch (e: IllegalAccessException) {
-                e.printStackTrace()
+                Log.i(TAG, "attach: IllegalAccessException, e: $e")
             } catch (e: InstantiationException) {
-                e.printStackTrace()
+                Log.i(TAG, "attach: InstantiationException, e: $e")
             }
         }
     }
@@ -63,5 +65,9 @@ abstract class BasePresenter<V : IBaseActivity, M : BaseModel> : IBasePresenter<
 
     override fun detach() {
         mModel = null
+    }
+
+    companion object {
+        private val TAG = this::class.java.simpleName
     }
 }

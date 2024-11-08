@@ -18,6 +18,7 @@ class MainPresenter : BasePresenter<MainContract.IMainView, DataModel>(), MainCo
 
     override fun handleData() {
         val view = getView()
+        view.showDialog()
         getModel()?.requestNetWork(object: Callback{
             override fun onFailure(call: Call, e: IOException) {
 

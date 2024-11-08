@@ -33,7 +33,7 @@ class FirstActivity : BaseActivity<MainContract.IMainView, MainContract.IMainPre
     }
 
     override fun initData() {
-//        mPresenter?.handleData()
+        mPresenter?.handleData()
     }
 
     override fun showDialog() {
